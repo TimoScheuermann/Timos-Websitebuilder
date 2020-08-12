@@ -3,6 +3,7 @@ import App from '@/App.vue';
 import WbComponent from '@/components/WbComponent.vue';
 import WbComponentSlot from '@/components/WbComponentSlot.vue';
 import WbDragposition from '@/components/WbDragposition.vue';
+import WbWebpageItem from '@/components/WbWebpageItem.vue';
 import router, { getTitle } from '@/router';
 import store from '@/store';
 import * as TCComponents from 'tccomponents_vue';
@@ -23,6 +24,7 @@ for (const component in TCComponents) {
 Vue.component('wb-component', WbComponent);
 Vue.component('wb-component-slot', WbComponentSlot);
 Vue.component('wb-dragposition', WbDragposition);
+Vue.component('wb-webpage-item', WbWebpageItem);
 
 router.beforeEach(async (to: Route, from: Route, next: Function) => {
   const title = getTitle(to);
@@ -40,7 +42,7 @@ router.beforeEach(async (to: Route, from: Route, next: Function) => {
   next();
 });
 
-new Vue({
+export default new Vue({
   router,
   store,
   render: h => h(App)

@@ -6,7 +6,8 @@
     >
       <wb-component slot="sidebar-content" v-if="tree" :comp="tree" />
 
-      <pre>{{ formatData }}</pre>
+      <wb-webpage />
+      <wb-component-modal />
     </tl-sidebar>
   </div>
 </template>
@@ -15,11 +16,13 @@
 import { Vue, Component } from 'vue-property-decorator';
 // import { v4 } from 'uuid';
 import { WbComponentModel } from '@/utils/models';
-import WbComponent from '@/components/WbComponent.vue';
+import WbComponentModal from '@/components/WbComponentModal.vue';
+import WbWebpage from '@/components/WbWebpage.vue';
 
 @Component({
   components: {
-    WbComponent
+    WbComponentModal,
+    WbWebpage
   }
 })
 export default class Home extends Vue {

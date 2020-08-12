@@ -2,7 +2,12 @@
   <div class="wb-component-slot">
     <div class="wb-component-slot--head">
       <div class="wb-component-slot__title">{{ compSlot.title }}</div>
-      <div class="wb-component-slot__icon"><i class="ti-plus" /></div>
+      <tc-button
+        icon="plus"
+        tfbackground="success"
+        variant="opaque"
+        @click="addComponent"
+      />
     </div>
     <div class="wb-component-slot__items">
       <wb-dragposition
@@ -38,11 +43,16 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import { WbComponentSlotModel } from '@/utils/models';
+import eventBus from '@/main';
 
 @Component
 export default class WbComponentSlot extends Vue {
   @Prop() compSlot!: WbComponentSlotModel;
   @Prop() compId!: string;
+
+  public addComponent(): void {
+    eventBus.$emit('newmodal', { slot: this.compSlot.title, id: this.compId });
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -59,8 +69,9 @@ export default class WbComponentSlot extends Vue {
     .wb-component__title {
       font-weight: 500;
     }
-    .wb-component__icon {
-      color: $error;
+    .tc-button {
+      padding: 2px;
+      margin-left: 10px;
     }
   }
   .wb-component-slot__items {

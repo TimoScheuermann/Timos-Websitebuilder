@@ -2,7 +2,7 @@
   <div class="wb-component" :draggable="true" @dragstart.stop="dragStart">
     <div class="wb-component--head">
       <div class="wb-component__title">{{ comp.title }}</div>
-      <div class="wb-component__icon"><i class="ti-stop" /></div>
+      <tc-link tfcolor="error" @click="remove">remove</tc-link>
     </div>
     <div class="wb-component__slots" :class="{ hasBorder: hasChildren }">
       <wb-component-slot
@@ -18,6 +18,7 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import { WbComponentModel } from '@/utils/models';
+import { removeComponent } from '@/utils/wbdrag';
 
 @Component
 export default class WbComponent extends Vue {
@@ -28,6 +29,10 @@ export default class WbComponent extends Vue {
       this.comp.slots.map(x => x.components.length).filter(x => x > 0).length >
       0
     );
+  }
+
+  public remove(): void {
+    removeComponent(this.comp.id);
   }
 
   public dragStart(event: DragEvent) {
@@ -52,8 +57,8 @@ export default class WbComponent extends Vue {
     .wb-component__title {
       font-weight: 500;
     }
-    .wb-component__icon {
-      color: $error;
+    .tc-link {
+      margin-left: 10px;
     }
   }
   .wb-component__slots {

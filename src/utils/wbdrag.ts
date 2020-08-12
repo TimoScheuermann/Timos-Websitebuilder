@@ -1,5 +1,6 @@
 import store from '@/store';
-import { WbComponentModel } from './models';
+import { v4 } from 'uuid';
+import { TcComponent, WbComponentModel } from './models';
 
 export function getRoot(): WbComponentModel {
   return store.getters.tree;
@@ -61,4 +62,30 @@ export function insertComponentInto(
 export function canDragInto(id: string, into: string) {
   if (id === into) return false;
   return !JSON.stringify(getComponentById(id)).includes(into);
+}
+
+export function insertNewComponent(
+  component: TcComponent,
+  props: Record<string, unknown>,
+  into: string,
+  slot: string
+): void {
+  const newComponent = {
+    component: component.name,
+    id: v4(),
+    slots: component.slots.map(x => {
+      return {
+        title: x,
+        components: []
+      };
+    }),
+    title: component.name,
+    props: props
+  } as WbComponentModel;
+
+  const target = getComponentById(into);
+  target.slots = target.slots.map(x => {
+    if (x.title === slot) x.components.unshift(newComponent);
+    return x;
+  });
 }

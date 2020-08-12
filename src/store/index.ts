@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { WbComponentModel } from '@/utils/models';
 import Vue from 'vue';
 import Vuex from 'vuex';
@@ -6,73 +7,14 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     tree: {
-      title: 'root',
+      title: 'html',
       id: '0',
-      component: '',
+      component: null,
+      props: {},
       slots: [
         {
-          title: 'default',
-          components: [
-            {
-              title: 'Item 1',
-              id: '1',
-              component: '',
-              slots: [{ title: 'slot 1', components: [] }]
-            },
-            {
-              title: 'Item 2',
-              id: '2',
-              component: '',
-              slots: [
-                {
-                  title: 'Item 2 Slot: default',
-                  components: [
-                    {
-                      title: 'Item 3',
-                      id: '3',
-                      component: '',
-                      slots: [
-                        {
-                          title: 'Item 3 Slot',
-                          components: [
-                            {
-                              id: '3.1',
-                              title: 'Item 3.1',
-                              component: '',
-                              slots: []
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      title: 'Item 4',
-                      id: '4',
-                      component: '',
-                      slots: []
-                    }
-                  ]
-                },
-                {
-                  title: 'Item 2 Slot: head',
-                  components: [
-                    {
-                      title: 'Item 5',
-                      id: '5',
-                      component: '',
-                      slots: []
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              title: 'Item 6',
-              id: '6',
-              component: '',
-              slots: []
-            }
-          ]
+          title: 'body',
+          components: []
         }
       ]
     } as WbComponentModel,

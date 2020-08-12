@@ -52,7 +52,6 @@ export default class WbDragposition extends Vue {
   max-height: 15px;
   white-space: nowrap;
   transition: 0.1s ease-in-out;
-  // background: red;
   &.selected {
     max-height: 50px;
   }
